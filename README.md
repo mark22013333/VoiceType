@@ -93,9 +93,3 @@
 | 語音辨識 | [whisper.cpp](https://github.com/ggerganov/whisper.cpp) (本機推理) |
 | AI 潤稿 | Claude Code CLI |
 | 降噪 | RNNoise (nnnoiseless) |
-
----
-
-## 授權
-
-本專案原始碼為私有。此 Repository 僅提供編譯後的安裝檔下載。
