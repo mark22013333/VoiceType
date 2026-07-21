@@ -51,7 +51,28 @@
 ### Windows 安裝步驟
 
 1. 下載 `.exe` 安裝檔
-2. 執行安裝程式，依指示完成安裝
+2. 如果 Microsoft Edge 顯示「不常下載，請確定您信任此檔案」，請點選下載項目旁的選單，依序選擇「保留」→「顯示更多」→「仍要保留」
+3. 執行安裝程式；如果 Microsoft Defender SmartScreen 顯示「Windows 已保護您的電腦」，請選擇「其他資訊」→「仍要執行」
+4. 依安裝程式指示完成安裝
+
+> **Windows 為什麼會顯示安全警告？**
+>
+> 目前 Windows 安裝檔尚未使用付費的程式碼簽章憑證，因此發行者會顯示為「不明」，SmartScreen 也可能將新版安裝檔標示為不常下載。這不代表檔案已損壞；請只從本頁連結的 [GitHub Releases](https://github.com/mark22013333/VoiceType/releases/latest) 下載。若檔案來自其他網站或來源不明，請取消安裝。
+
+### Windows／VMware 啟動後閃退
+
+若 VoiceType 的介面出現後立刻關閉，尤其是在 VMware 的 Windows 11 虛擬機器內，可能是 WebView2 與虛擬顯示卡的硬體加速相容性問題。請先關閉 VoiceType，再依下列步驟啟用軟體繪圖：
+
+1. 按 `Win + R`，輸入 `cmd` 後按 Enter
+2. 執行：
+
+   ```bat
+   setx VOICETYPE_SOFTWARE_RENDERING 1
+   ```
+
+3. 關閉命令提示字元，重新啟動 VoiceType
+
+若仍然閃退，請到 `%APPDATA%\com.voicetype.app\logs\` 取得 `bootstrap.log` 與最新的當機記錄，並到 [Issues](https://github.com/mark22013333/VoiceType/issues) 回報。若要關閉軟體繪圖模式，可執行 `setx VOICETYPE_SOFTWARE_RENDERING 0` 後重新啟動 VoiceType。
 
 ---
 
