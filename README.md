@@ -21,7 +21,6 @@
 | 平台 | 檔案 |
 |------|------|
 | macOS (Apple Silicon) | `VoiceType_x.x.x_aarch64.dmg` |
-| macOS (Intel) | `VoiceType_x.x.x_x64.dmg` |
 | Windows (x64) | `VoiceType_x.x.x_x64-setup.exe` |
 
 ### 系統需求
