@@ -5,7 +5,7 @@
 <h1 align="center">VoiceType</h1>
 
 <p align="center">
-  macOS / Windows 桌面應用。語音轉文字，內建離線辨識 + Claude AI 智慧潤稿。
+  macOS / Windows 桌面應用。語音轉文字，內建離線辨識 + AI 智慧潤稿（預設 Claude CLI，可改用其他 LLM）。
 </p>
 
 <p align="center">
@@ -26,7 +26,7 @@
 ### 系統需求
 
 - **macOS 10.15+**（Catalina 以上）或 **Windows 10+**
-- [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code/overview) 已安裝並登入（AI 潤稿功能需要）
+- AI 潤稿需要至少一個 LLM Provider：預設為 [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code/overview)（需已安裝並登入），也可在「設定 → LLM Provider」改用 Antigravity CLI、Google Gemini、Groq 或 Ollama（本機）
 
 ### macOS 安裝步驟
 
@@ -78,15 +78,16 @@
 ## 功能特色
 
 ### 語音辨識（完全離線）
-- 內建 [Whisper](https://github.com/openai/whisper) 語音辨識引擎，所有辨識在本機完成
-- 支援多種模型大小（首次使用在設定中下載）
+- 內建 [Whisper](https://github.com/openai/whisper) 與 [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) 語音辨識引擎，所有辨識在本機完成
+- 支援多種模型（首次使用在「設定 → 模型管理」下載）：Whisper 系列、SenseVoice、Qwen3-ASR、Paraformer、Fire-Red-ASR2，以及 3 個「日常即時聽寫」串流模型
 - 即時串流辨識，錄音中即時顯示辨識文字
 
 ### AI 智慧潤稿
-- 透過 Claude AI 自動將口語轉為書面文字
-- 7 種內建模板：純文字整理、會議紀錄、任務清單、郵件草稿、Slack 訊息、正式語氣、輕鬆語氣
-- 支援自訂模板，建立專屬的 AI prompt
-- 可選擇 Claude 模型（Sonnet / Haiku / Opus）
+- 透過 AI 將口語轉為書面文字；支援 5 個 LLM Provider：Claude CLI（預設）、Antigravity CLI、Google Gemini、Groq、Ollama（本機）
+- 停錄後自動潤稿預設關閉，可在「設定 → 錄音」分別開啟「日常即時聽寫」與「會議／離線錄音」的自動潤稿；會議／離線錄音另有秒數門檻（預設 60 秒，較短的錄音直接輸出原文）
+- 8 種內建潤稿風格：日常自然、會議紀錄、任務清單、郵件草稿、簡短訊息、正式語氣、輕鬆語氣、提示詞最佳化
+- 支援自訂風格，可新增或從內建風格「複製後自訂」，建立專屬的 AI prompt
+- 使用 Claude CLI 時可選擇 Claude 模型（Haiku / Sonnet / Opus）；未指定時由 Claude CLI 自動選擇
 
 ### 手動輸入潤稿（TYPE 模式）
 - 不錄音也能使用 — 直接貼上文字進行 AI 潤稿
@@ -97,9 +98,9 @@
 - 高通濾波預處理，提升辨識準確度
 
 ### 桌面整合
-- 全域熱鍵一鍵錄音（預設 Cmd+Shift+O，可自訂）
+- 全域熱鍵一鍵錄音（預設 macOS 為 Cmd+Shift+O、Windows 為 Ctrl+Shift+O，可自訂）；觸發方式可選「按一下開始／再按一下停止」、「按住錄音／放開停止」或停用錄音快捷鍵
 - 常駐工具列，不佔螢幕空間
-- 潤稿結果自動複製到剪貼簿
+- 結果預設自動貼上到游標位置：先寫入剪貼簿、模擬貼上；原本剪貼簿若是文字，貼上後會還原（圖片、檔案或空白剪貼簿不會還原，結果會留在剪貼簿）。可在「設定 → 一般 → 辨識結果輸出」改為「只複製到剪貼簿」
 - 錄音檔（.wav）和逐字稿自動存檔
 
 ---
@@ -110,6 +111,6 @@
 |------|------|
 | 桌面框架 | [Tauri v2](https://v2.tauri.app/) (Rust) |
 | 前端 | Svelte 5 + Vite |
-| 語音辨識 | [whisper.cpp](https://github.com/ggerganov/whisper.cpp) (本機推理) |
-| AI 潤稿 | Claude Code CLI |
+| 語音辨識 | [whisper.cpp](https://github.com/ggerganov/whisper.cpp)、[sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) (本機推理) |
+| AI 潤稿 | Claude Code CLI（預設）、Antigravity CLI、Google Gemini、Groq、Ollama |
 | 降噪 | RNNoise (nnnoiseless) |
