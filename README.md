@@ -77,10 +77,10 @@
 
 ## 功能特色
 
-### 語音辨識（完全離線）
-- 內建 [Whisper](https://github.com/openai/whisper) 與 [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) 語音辨識引擎，所有辨識在本機完成
+### 語音辨識（預設離線）
+- 內建 [Whisper](https://github.com/openai/whisper) 與 [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) 語音辨識引擎，預設所有辨識在本機完成；也可在「設定 → 模型管理 → 外部 ASR 伺服器」改送到外部 ASR 伺服器（例如 whisper.cpp 的 `whisper-server`）辨識
 - 支援多種模型（首次使用在「設定 → 模型管理」下載）：Whisper 系列、SenseVoice、Qwen3-ASR、Paraformer、Fire-Red-ASR2，以及 3 個「日常即時聽寫」串流模型
-- 即時串流辨識，錄音中即時顯示辨識文字
+- 即時串流辨識，錄音中即時顯示辨識文字：只在已安裝串流模型並啟用「日常即時聽寫」（設定 → 模型管理）、且只用麥克風錄音時使用；會議或含系統音訊的錄音改用一般高品質模型
 
 ### AI 智慧潤稿
 - 透過 AI 將口語轉為書面文字；支援 5 個 LLM Provider：Claude CLI（預設）、Antigravity CLI、Google Gemini、Groq、Ollama（本機）
@@ -91,11 +91,12 @@
 
 ### 手動輸入潤稿（TYPE 模式）
 - 不錄音也能使用 — 直接貼上文字進行 AI 潤稿
-- 套用相同的模板和模型設定
+- 套用相同的潤稿風格和模型設定
 
 ### 音訊預處理
 - RNNoise 降噪，過濾背景雜音（冷氣、風扇、鍵盤聲）
 - 高通濾波預處理，提升辨識準確度
+- 高通濾波與 RNNoise 降噪由同一個開關控制（設定 → 錄音 → 降噪處理），關閉降噪時兩者都不會執行
 
 ### 桌面整合
 - 全域熱鍵一鍵錄音（預設 macOS 為 Cmd+Shift+O、Windows 為 Ctrl+Shift+O，可自訂）；觸發方式可選「按一下開始／再按一下停止」、「按住錄音／放開停止」或停用錄音快捷鍵
